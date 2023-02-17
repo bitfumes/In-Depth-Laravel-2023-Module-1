@@ -17,7 +17,8 @@ use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     // fetch all users
-    $users = DB::select("select * from users");
+    // $users = DB::select("select * from users");
+    $users = DB::table('users')->where('id', 1)->first();
 
     // create new user
     // $user = DB::insert('insert into users (name, email, password) values (?,?,?)', [
@@ -25,15 +26,22 @@ Route::get('/', function () {
     //     'sarthak1@bitfumes.com',
     //     'password',
     // ]);
+    // $user = DB::table('users')->insert([
+    //     'name'     => 'Sarthak',
+    //     'email'    => 'sarthak1@bitfumes.com',
+    //     'password' => 'password',
+    // ]);
 
     // update a user
     // $user = DB::update("update users set email=? where id=?", [
     //     'sarthak1@bitfumes.com',
     //     3,
     // ]);
+    // $user = DB::table('users')->where('id', 5)->update(['email' => 'abc@bitfumes.com']);
 
     //  delete a user
     // $user = DB::delete("delete from users where id=3");
+    // $user = DB::table('users')->where('id', 5)->delete();
     dd($users);
 });
 
