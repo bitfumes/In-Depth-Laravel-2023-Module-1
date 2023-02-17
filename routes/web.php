@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -18,7 +19,8 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', function () {
     // fetch all users
     // $users = DB::select("select * from users");
-    $users = DB::table('users')->where('id', 1)->first();
+    // $users = DB::table('users')->where('id', 1)->first();
+    $user = User::find(17);
 
     // create new user
     // $user = DB::insert('insert into users (name, email, password) values (?,?,?)', [
@@ -28,7 +30,12 @@ Route::get('/', function () {
     // ]);
     // $user = DB::table('users')->insert([
     //     'name'     => 'Sarthak',
-    //     'email'    => 'sarthak1@bitfumes.com',
+    //     'email'    => 'sarthak2@bitfumes.com',
+    //     'password' => 'password',
+    // ]);
+    // $user = User::create([
+    //     'name'     => 'Sarthak',
+    //     'email'    => 'sarthak7@bitfumes.com',
     //     'password' => 'password',
     // ]);
 
@@ -38,11 +45,17 @@ Route::get('/', function () {
     //     3,
     // ]);
     // $user = DB::table('users')->where('id', 5)->update(['email' => 'abc@bitfumes.com']);
+    // $user = User::find(6);
+    // $user->update([
+    //     'email' => 'sarthak1@bitfumes.com',
+    // ]);
 
     //  delete a user
     // $user = DB::delete("delete from users where id=3");
     // $user = DB::table('users')->where('id', 5)->delete();
-    dd($users);
+    // $user = User::find(6);
+    // $user->delete();
+    dd($user->name);
 });
 
 Route::get('/dashboard', function () {
