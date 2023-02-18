@@ -10,7 +10,9 @@
     </header>
 
 
-    <form method="post" action="/profile/avatar">
+    <form method="post" action="{{ route('profile.avatar') }}">
+        @method('patch')
+        @csrf
         <div>
             <x-input-label for="name" value="Avatar" />
             <x-text-input id="avatar" name="avatar" type="file" class="mt-1 block w-full" :value="old('avatar', $user->avatar)" required
