@@ -15,12 +15,13 @@
         </div>
     @endif
 
-    <form method="post" action="{{ route('profile.avatar') }}">
+    <form method="post" action="{{ route('profile.avatar') }}" enctype="multipart/form-data">
         @method('patch')
         @csrf
+
         <div>
             <x-input-label for="name" value="Avatar" />
-            <x-text-input id="avatar" name="avatar" type="file" class="mt-1 block w-full" :value="old('avatar', $user->avatar)" required
+            <x-text-input id="avatar" name="avatar" type="file" class="mt-1 block w-full" :value="old('avatar', $user->avatar)"
                 autofocus autocomplete="avatar" />
             <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
         </div>
