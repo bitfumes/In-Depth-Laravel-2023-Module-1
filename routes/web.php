@@ -27,17 +27,20 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::patch('/profile/avatar', [AvatarController::class, 'update'])->name('profile.avatar');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::patch('/profile/avatar', [AvatarController::class, 'update'])->name('profile.avatar');
+    Route::post('/profile/avatar/ai', [AvatarController::class, 'generate'])->name('profile.avatar.ai');
 });
 
 require __DIR__.'/auth.php';
 
-Route::get('/openai', function () {
-    $result = OpenAI::completions()->create([
-        'model'  => 'text-davinci-003',
-        'prompt' => 'PHP is',
-    ]);
+// Route::get('/openai', function () {
+//     $result = OpenAI::images()->create([
+//         "prompt" => 'create avatar for user with cool style animated in tech world',
+//         'n'      => 1,
+//         'size'   => "256x256",
+//     ]);
 
-    echo $result['choices'][0]['text']; // an open-source, widely-used, server-side scripting language.
-});
+//     return response(['url' => $result->data[0]->url]);
+// });
