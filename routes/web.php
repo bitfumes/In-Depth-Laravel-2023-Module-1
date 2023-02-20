@@ -1,5 +1,6 @@
 <?php
 
+use OpenAI\Laravel\Facades\OpenAI;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Profile\AvatarController;
@@ -31,3 +32,12 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('/openai', function () {
+    $result = OpenAI::completions()->create([
+        'model'  => 'text-davinci-003',
+        'prompt' => 'PHP is',
+    ]);
+
+    echo $result['choices'][0]['text']; // an open-source, widely-used, server-side scripting language.
+});
