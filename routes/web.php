@@ -1,7 +1,7 @@
 <?php
 
-use OpenAI\Laravel\Facades\OpenAI;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Profile\AvatarController;
 
@@ -35,12 +35,12 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-// Route::get('/openai', function () {
-//     $result = OpenAI::images()->create([
-//         "prompt" => 'create avatar for user with cool style animated in tech world',
-//         'n'      => 1,
-//         'size'   => "256x256",
-//     ]);
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('github')->redirect();
+});
 
-//     return response(['url' => $result->data[0]->url]);
-// });
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('github')->user();
+    dd($user);
+    // $user->token
+});
