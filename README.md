@@ -4,7 +4,7 @@
 
 #### Project Idea
 1. User can create a new help ticket
-2. Admin can reply on help ticket
+2. Admin and user can reply on help ticket
 3. Admin can reject or resolve the ticket
 4. When admin update on the ticket then user will get one notification via email that ticket status is updated
 5. User can give ticket title and description
