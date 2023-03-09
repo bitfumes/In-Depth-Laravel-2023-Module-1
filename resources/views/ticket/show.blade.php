@@ -22,10 +22,24 @@
                         <x-primary-button>Delete</x-primary-button>
                     </form>
                 </div>
-                <div class="flex">
-                    <x-primary-button>Approve</x-primary-button>
-                    <x-primary-button class="ml-2">Reject</x-primary-button>
-                </div>
+                @if (auth()->user()->isAdmin)
+                    <div class="flex">
+                        <form action="{{ route('ticket.update', $ticket->id) }}" method="post">
+                            @csrf
+                            @method('patch')
+                            <input type="hidden" name="status" value="resolved" />
+                            <x-primary-button>Resolve</x-primary-button>
+                        </form>
+                        <form action="{{ route('ticket.update', $ticket->id) }}" method="post">
+                            @csrf
+                            @method('patch')
+                            <input type="hidden" name="status" value="rejected" />
+                            <x-primary-button class="ml-2">Reject</x-primary-button>
+                        </form>
+                    </div>
+                @else
+                    <p class="text-white">Status: {{ $ticket->status }} </p>
+                @endif
             </div>
         </div>
     </div>
