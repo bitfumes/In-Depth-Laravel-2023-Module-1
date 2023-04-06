@@ -54,12 +54,12 @@ class User extends Authenticatable
         );
     }
 
-    protected function password(): Attribute
-    {
-        return Attribute::make(
-            set: fn ($value) => bcrypt($value)
-        );
-    }
+    // protected function password(): Attribute
+    // {
+    //     return Attribute::make(
+    //         set: fn ($value) => bcrypt($value)
+    //     );
+    // }
 
     protected function isAdmin(): Attribute
     {
