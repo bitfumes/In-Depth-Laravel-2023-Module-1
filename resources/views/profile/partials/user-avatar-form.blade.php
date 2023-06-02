@@ -5,8 +5,9 @@
         </h2>
 
     </header>
-    <img width="50" height="50" class="rounded-full" src="{{ "/storage/$user->avatar" }}" alt="user avatar" />
-
+    @if($user->avatar)
+        <img width="50" height="50" class="rounded-full" src="{{ "/storage/$user->avatar" }}" alt="user avatar" />
+    @endif
     <form action="{{ route('profile.avatar.ai') }}" method="post" class="mt-4">
         @csrf
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
